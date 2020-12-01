@@ -1,0 +1,7 @@
+Code is written so that input is given in a text file as an argument to the binary.
+
+To run it first compile it:
+ghc -dynamic source.hs
+
+then run it:
+./executable input_file
