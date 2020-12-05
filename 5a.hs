@@ -17,12 +17,7 @@ col = codeRange 'R' 0 4
 seatId :: String -> Int
 seatId s = let (r, c) = splitAt 7 s in (8 * (row r)) + col c
 
-debug :: String -> (Int, Int)
-debug s = (row r, col c)
-    where (r, c) = splitAt 7 s
-
 main = do
     [inputFile] <- getArgs
     input <- readFile inputFile
-    let boardingPasses = lines input
-    print $ maximum $ map seatId boardingPasses
+    print $ (maximum . map seatId . lines) input

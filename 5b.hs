@@ -28,5 +28,4 @@ missingSeat (s1:s2:ss) = if s2 == (s1 + 2) then s1 + 1 else missingSeat (s2:ss)
 main = do
     [inputFile] <- getArgs
     input <- readFile inputFile
-    let boardingPasses = lines input
-    print $ (missingSeat . centeredSeats . map seatId) boardingPasses
+    print $ (missingSeat . centeredSeats . map seatId . lines) input
