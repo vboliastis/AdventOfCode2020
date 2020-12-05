@@ -2,17 +2,17 @@ import System.Environment
 import Data.List (splitAt)
 
 -- Accepts an initial range and narrows it down according to encoded instructions
-codeRange :: (Char, Char) -> Int -> Int -> String -> Int
-codeRange (_, _) acc _ [] = acc
-codeRange (cl, ch) acc v (s:ss)
-    | s == ch   = codeRange (cl, ch) (acc + v) (div v 2) ss
-    | otherwise = codeRange (cl, ch) acc (div v 2) ss
+codeRange :: Char -> Int -> Int -> String -> Int
+codeRange _ acc _ [] = acc
+codeRange ch acc v (s:ss)
+    | s == ch   = codeRange ch (acc + v) (div v 2) ss
+    | otherwise = codeRange ch acc (div v 2) ss
 
 row :: String -> Int
-row = codeRange ('F', 'B') 0 64
+row = codeRange 'B' 0 64
 
 col :: String -> Int
-col = codeRange ('L', 'R') 0 4
+col = codeRange 'R' 0 4
 
 seatId :: String -> Int
 seatId s = let (r, c) = splitAt 7 s in (8 * (row r)) + col c
